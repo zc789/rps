@@ -17,8 +17,9 @@ function getComputerChoice() {
 
 //Create function that returns human player choice using loop to get player input if doenst, it will keep asking
 
-/*function getHumanChoice() {
+function getHumanChoice() {
     let humanInput = false;
+    
     while(humanInput == false){         //start of loop, so while humanInput is still false it will keep looping
         const choice = prompt("Choose Rock, Paper, or Scissors"); //use prompt to get user input
         if(choice == null){         //to check if the prompt is empty
@@ -32,10 +33,10 @@ function getComputerChoice() {
     }
 }
 
-console.log(getHumanChoice());
-*/
-//create variable that tracks player score
+//create variable that tracks scores
 
+var humanScore = 0
+var computerScore = 0
 
 //write function that checks who's the winner
 
@@ -48,11 +49,14 @@ function checkWinner(humanChoice, computerChoice) {
         (humanChoice == "scissors" && computerChoice == "rock") || 
         (humanChoice == "paper" && computerChoice == "scissors")
     ){
+        computerScore++; //adds point
         return "computer"; //return "computer" if the scenario above happens
     } 
     else {
+        humanScore++;
         return "human"; //if none of the above it will return "human" (don't do the same as above
     }
+    console.log(humanScore, computerScore);
 }
 
 //Write logic to play single round
@@ -60,17 +64,36 @@ function checkWinner(humanChoice, computerChoice) {
 function playRound(humanChoice, computerChoice) {
     const result = checkWinner(humanChoice, computerChoice);  //create const with previous function and use that to determine what words will show
     if(result == "tie"){
-        console.log("It's a tie!")
+        console.log("It's a tie!");
     } 
     else if (result == "computer"){
-        console.log(`You lose! ${computerChoice} to`); //use backticks when doing this way
+        console.log(`You lose, ${computerChoice} beats ${humanChoice} :(`); //use backticks when doing this way
     } 
     else{
-        console.log("You win! ");
+        console.log(`You win, ${humanChoice} beats ${computerChoice} :)`);
     }
   }
-  
-const humanChoice = "rock";
-const computerChoice = getComputerChoice();
-console.log(playRound(humanChoice, computerChoice));
 
+  
+//Write logic to play game with 5 rounds
+
+function playGame(humanChoice, computerChoice){
+    for (i = 0; i < 5; i++){
+        const humanChoice = getHumanChoice();       //attach human input to const so both checkWinner and playRound function work
+        const computerChoice = getComputerChoice();
+        console.log(playRound(humanChoice, computerChoice));
+    }
+    console.log("-------")
+    if(humanScore > computerScore){
+        console.log("Player Wins!");
+    }
+    else if(computerScore > humanScore){
+        console.log("Computer Wins...");
+    }
+    else{
+        console.log("Somehow it's a tie?")
+    }
+    
+}
+
+playGame()
