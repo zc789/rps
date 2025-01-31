@@ -40,36 +40,37 @@ console.log(getHumanChoice());
 //write function that checks who's the winner
 
 function checkWinner(humanChoice, computerChoice) {
-    if (humanChoice == computerChoice){
-        return "tie";
+    if (humanChoice == computerChoice){ 
+        return "tie"; //return "tie" if humanChoice and computerChoice is the same
     } 
-    else if (
+    else if ( 
         (humanChoice == "rock" && computerChoice == "paper") || 
         (humanChoice == "scissors" && computerChoice == "rock") || 
         (humanChoice == "paper" && computerChoice == "scissors")
     ){
-        return "computer";
+        return "computer"; //return "computer" if the scenario above happens
     } 
     else {
-        return "human";
+        return "human"; //if none of the above it will return "human" (don't do the same as above
     }
 }
 
 //Write logic to play single round
 
 function playRound(humanChoice, computerChoice) {
-    const result = checkWinner(humanChoice, computerChoice);
+    const result = checkWinner(humanChoice, computerChoice);  //create const with previous function and use that to determine what words will show
     if(result == "tie"){
         console.log("It's a tie!")
     } 
     else if (result == "computer"){
-        console.log("You lose! :(")
+        console.log(`You lose! ${computerChoice} to`); //use backticks when doing this way
     } 
     else{
-        console.log("You win! :)")
+        console.log("You win! ");
     }
   }
   
 const humanChoice = "rock";
 const computerChoice = getComputerChoice();
 console.log(playRound(humanChoice, computerChoice));
+
