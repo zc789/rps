@@ -9,14 +9,15 @@ const options = ["rock", "paper", "scissors"];
 
 function getComputerChoice() {
     const choice = options[Math.floor(Math.random() * options.length)]; //create const choice so that computer can make a choice while using the options const. use Math.random() to return randome number between 0 and 1 but bc we have 3 elements. multiply it by options.length. then use Math.floor() since we might get 1.5 but we don't have that so we need to round it down 
+    console.log(choice);
     return choice; //return is like console.log that shows what's result
 }
 
-console.log(getComputerChoice());
+
 
 //Create function that returns human player choice using loop to get player input if doenst, it will keep asking
 
-function getHumanChoice() {
+/*function getHumanChoice() {
     let humanInput = false;
     while(humanInput == false){         //start of loop, so while humanInput is still false it will keep looping
         const choice = prompt("Choose Rock, Paper, or Scissors"); //use prompt to get user input
@@ -32,24 +33,24 @@ function getHumanChoice() {
 }
 
 console.log(getHumanChoice());
-
+*/
 //create variable that tracks player score
 
-var humanScore = 0;
-var computerScore = 0;
 
-let humanChoice = getHumanChoice;
-let computerChoice = getComputerChoice;
 //write function that checks who's the winner
 
 function checkWinner(humanChoice, computerChoice) {
     if (humanChoice == computerChoice){
         return "tie";
-    } else if (
-        (humanChoice == "rock" && computerChoice == "paper") || (humanChoice == "scissors" && computerChoice == "rock") || (humanChoice == "paper" && computerChoice == "scissors")
+    } 
+    else if (
+        (humanChoice == "rock" && computerChoice == "paper") || 
+        (humanChoice == "scissors" && computerChoice == "rock") || 
+        (humanChoice == "paper" && computerChoice == "scissors")
     ){
         return "computer";
-    } else {
+    } 
+    else {
         return "human";
     }
 }
@@ -60,11 +61,15 @@ function playRound(humanChoice, computerChoice) {
     const result = checkWinner(humanChoice, computerChoice);
     if(result == "tie"){
         console.log("It's a tie!")
-    } else if (result == "computer"){
+    } 
+    else if (result == "computer"){
         console.log("You lose! :(")
-    } else{
+    } 
+    else{
         console.log("You win! :)")
     }
   }
   
-  console.log(playRound())
+const humanChoice = "rock";
+const computerChoice = getComputerChoice();
+console.log(playRound(humanChoice, computerChoice));
