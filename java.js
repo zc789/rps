@@ -12,14 +12,14 @@ function getComputerChoice() {
     return choice; //return is like console.log that shows what's result
 }
 
-
 console.log(getComputerChoice());
+
 //Create function that returns human player choice using loop to get player input if doenst, it will keep asking
 
 function getHumanChoice() {
     let humanInput = false;
     while(humanInput == false){         //start of loop, so while humanInput is still false it will keep looping
-        const choice = prompt("Rock Paper Scissors"); //use prompt to get user input
+        const choice = prompt("Choose Rock, Paper, or Scissors"); //use prompt to get user input
         if(choice == null){         //to check if the prompt is empty
             continue;           //if it's empty it will continue(loops again)
         }
@@ -32,3 +32,39 @@ function getHumanChoice() {
 }
 
 console.log(getHumanChoice());
+
+//create variable that tracks player score
+
+var humanScore = 0;
+var computerScore = 0;
+
+let humanChoice = getHumanChoice;
+let computerChoice = getComputerChoice;
+//write function that checks who's the winner
+
+function checkWinner(humanChoice, computerChoice) {
+    if (humanChoice == computerChoice){
+        return "tie";
+    } else if (
+        (humanChoice == "rock" && computerChoice == "paper") || (humanChoice == "scissors" && computerChoice == "rock") || (humanChoice == "paper" && computerChoice == "scissors")
+    ){
+        return "computer";
+    } else {
+        return "human";
+    }
+}
+
+//Write logic to play single round
+
+function playRound(humanChoice, computerChoice) {
+    const result = checkWinner(humanChoice, computerChoice);
+    if(result == "tie"){
+        console.log("It's a tie!")
+    } else if (result == "computer"){
+        console.log("You lose! :(")
+    } else{
+        console.log("You win! :)")
+    }
+  }
+  
+  console.log(playRound())
